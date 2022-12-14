@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - trabalho_network
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    env_file:
+      - .env
+    image: mysql:8.0
+    networks:
+      - trabalho_network
+    ports:
+      - "4000:3306"
+    volumes:
+      - /sql
+      - /var/lib/mysql
+
+  nginx:
+    build:
+      context: .docker/nginx
+    volumes:
+      - ./app:/var/www/html:delegated
+      - .docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - .docker/nginx/sites:/etc/nginx/sites-available
+      - .docker/nginx/conf.d/:/etc/nginx/conf.d
+    ports:
+      - "8000:80"
+    depends_on:
+      - app
+    networks:
+      - trabalho_network
+
+networks:
+  trabalho_network:
+
+volumes:
+  db:
