@@ -3,6 +3,8 @@ version: '3.9'
 services:
   app:
     container_name: app
+    env_file:
+      - app/.env
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,7 +17,7 @@ services:
 
   db:
     env_file:
-      - .env
+      - app/.env
     image: mysql:8.0
     networks:
       - trabalho_network
