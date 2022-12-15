@@ -2,14 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Subscriber;
 use App\Service\SubscriberService;
 use App\Form\SubscriberFormType;
 use App\Repository\SubscriberRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SubscriberController extends AbstractController
