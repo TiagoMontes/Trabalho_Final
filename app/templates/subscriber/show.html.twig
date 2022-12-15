@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>{% block title %}Welcome!{% endblock %}</title>
+    </head>
+    <bodu>
+        {% block body %}
+            
+
+            <h2>Subscriber to my newsletter</h2>
+
+            {{ form(subscriber_form)}}
+
+            <hr>
+            {% for subscriber in subscribers %}
+
+                <p>
+                    {{subscriber.firstname}} - {{subscriber.lastname}} - {{subscriber.email}}
+                </p>
+
+            {% endfor %}
+
+        {% endblock %}
+    </body>
+</html>
