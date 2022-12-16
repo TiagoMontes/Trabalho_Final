@@ -57,8 +57,8 @@ class MovieController extends AbstractController
         return new Response('Filme ' .$movie->getName());
     }
 
-    #[Route('/movie/edit/{id}', name: 'movie_edit')]
-    public function update(ManagerRegistry $doctrine, int $id): Response
+    #[Route('/movie/edit/{id}/{new_name}', name: 'movie_edit')]
+    public function update(ManagerRegistry $doctrine, int $id, string $new_name): Response
     {
         $entityManager = $doctrine->getManager();
         $movie = $entityManager->getRepository(Movie::class)->find($id);
@@ -69,7 +69,7 @@ class MovieController extends AbstractController
             );
         }
 
-        $movie->setName('Nome do filme editado');
+        $movie->setName($new_name);
         $entityManager->flush();
 
         return $this->redirectToRoute('movie', [
@@ -91,6 +91,6 @@ class MovieController extends AbstractController
         $entityManager->remove($movie);
         $entityManager->flush();
 
-        return new Response('Filme deletado: ' .$movie->getName());
+        return new Response('Filme deletado: ' . $movie->getName());
     }
 }

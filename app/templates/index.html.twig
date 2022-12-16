@@ -8,23 +8,26 @@
     {% endfor %}
 
     {{ form_start(form) }}
-        {{ form_row(form.name) }}
-
         <div>
+            {{ form_row(form.name) }}
+
             <button type="submit">
                 Salvar
             </button>
         </div>
 
+        <br>
+
         <div>
-            
             {% for movie in movies %}
                 <li>
                     {{ movie.name }}
+
+                    <button type="submit">
+                        <a href="/movie/delete/{{movie.id}}">Deletar</a>
+                    </button>
                 </li>
             {% endfor %}
-
-            
         </div>
 
     {{ form_end(form) }}
