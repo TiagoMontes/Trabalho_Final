@@ -16,6 +16,12 @@ class Movie
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    //#[ORM\Column(length: 255)]
+    //private ?string $description = null;
+
+    //#[ORM\Column]
+    //private int $duration;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -32,4 +38,28 @@ class Movie
 
         return $this;
     }
+
+    //public function getDescription(): ?string
+    //{
+    //    return $this->description;
+    //}
+
+    //public function setDescription(string $description): self
+    //{
+    //    $this->description = $description;
+//
+    //    return $this;
+   // }
+
+    //public function getDuration(): ?int
+    //{
+    //    return $this->duration;
+    //}
+
+   // public function setDuration(string $duration): self
+    //{
+    //    $this->duration = $duration;
+
+    //    return $this;
+    //}
 }

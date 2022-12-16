@@ -16,6 +16,17 @@
             </button>
         </div>
 
+        <div>
+            
+            {% for movie in movies %}
+                <li>
+                    {{ movie.name }}
+                </li>
+            {% endfor %}
+
+            
+        </div>
+
     {{ form_end(form) }}
 
 {% endblock %}

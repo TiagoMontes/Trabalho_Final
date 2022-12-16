@@ -14,7 +14,7 @@ class Genre
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private ?string $genre = null;
 
     #[ORM\Column(length: 255)]
     private ?string $rating = null;
@@ -24,14 +24,14 @@ class Genre
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getGenre(): ?string
     {
-        return $this->name;
+        return $this->genre;
     }
 
-    public function setName(string $name): self
+    public function setGenre(string $genre): self
     {
-        $this->name = $name;
+        $this->genre = $genre;
 
         return $this;
     }
