@@ -25,6 +25,7 @@ class MovieController extends AbstractController
     {
         $form = $this->createForm(MovieType::class);
         $form->handleRequest($request);
+        dd($form);
         
         if ($form->isSubmitted() && $form->isValid()) {
             $this->movieService->create($form->getData());
@@ -43,39 +44,53 @@ class MovieController extends AbstractController
         ]);   
     }
 
-    #[Route('/movie/{id}', name: 'search_movie')]
-    public function search(ManagerRegistry $doctrine, int $id): Response
+    // #[Route('/movie/{id}', name: 'search_movie')]
+    // public function search(ManagerRegistry $doctrine, int $id): Response
+    // {
+    //     $movie = $doctrine->getRepository(Movie::class)->find($id);
+
+    //     if (!$movie) {
+    //         throw $this->createNotFoundException(
+    //             'Filme com id: ' . $id . ' não econtrado.'
+    //         );
+    //     }
+
+    //     return new Response('Filme ' .$movie->getName());
+    // }
+
+    #[Route('/movie/edit', name: 'movie_edit')]
+    public function update(Request $request, ManagerRegistry $doctrine) 
     {
-        $movie = $doctrine->getRepository(Movie::class)->find($id);
+        $movieName = $request->request->get('movie');
+        $movieId = $request->request->get('id');
+        // dd($movieId, $movieName);
+        $movie = $doctrine->getRepository(Movie::class)->find($movieId);
 
-        if (!$movie) {
-            throw $this->createNotFoundException(
-                'Filme com id: ' . $id . ' não econtrado.'
-            );
-        }
+        $movie->setName($movieName);
+        $this->movieRepository->save($movie, true);
 
-        return new Response('Filme ' .$movie->getName());
+        return $this->redirect('/movie');
     }
 
-    #[Route('/movie/edit/{id}/{new_name}', name: 'movie_edit')]
-    public function update(ManagerRegistry $doctrine, int $id, string $new_name): Response
-    {
-        $entityManager = $doctrine->getManager();
-        $movie = $entityManager->getRepository(Movie::class)->find($id);
+    // #[Route('/movie/edit/{id}/{new_name}', name: 'movie_edit')]
+    // public function update(ManagerRegistry $doctrine, int $id, string $new_name): Response
+    // {
+    //     $entityManager = $doctrine->getManager();
+    //     $movie = $entityManager->getRepository(Movie::class)->find($id);
 
-        if (!$movie) {
-            throw $this->createNotFoundException(
-                'Nenhum filme com id ' . $id . ' encontrado'
-            );
-        }
+    //     if (!$movie) {
+    //         throw $this->createNotFoundException(
+    //             'Nenhum filme com id ' . $id . ' encontrado'
+    //         );
+    //     }
 
-        $movie->setName($new_name);
-        $entityManager->flush();
+    //     $movie->setName($new_name);
+    //     $entityManager->flush();
 
-        return $this->redirectToRoute('movie', [
-            'id' => $movie->getId()
-        ]);
-    }
+    //     return $this->redirectToRoute('movie', [
+    //         'id' => $movie->getId()
+    //     ]);
+    // }
 
     #[Route('/movie/delete/{id}', name: 'delete_movie')]
     public function delete(ManagerRegistry $doctrine, int $id, EntityManagerInterface $entityManager): Response

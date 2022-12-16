@@ -18,18 +18,27 @@
 
         <br>
 
-        <div>
-            {% for movie in movies %}
+    {{ form_end(form) }}
+
+    <div>
+        {% for movie in movies %}
+            <div>
                 <li>
                     {{ movie.name }}
+                </li>
 
+                <form action="/movie/edit" method="POST">
+                    <input type="hidden" name="id" value={{ movie.id }} />
+                    <input type="text" name="movie" />
+                    <input type="submit" value="editar" />
+                    
                     <button type="submit">
                         <a href="/movie/delete/{{movie.id}}">Deletar</a>
                     </button>
-                </li>
-            {% endfor %}
-        </div>
+                </form>
 
-    {{ form_end(form) }}
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
