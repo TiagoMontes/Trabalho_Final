@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Movie;
 use App\Form\Type\MovieType;
 use App\Repository\MovieRepository;
 use App\Service\MovieService;
@@ -10,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Service\Attribute\SubscribedService;
 
 class MovieController extends AbstractController
 {
@@ -29,7 +27,7 @@ class MovieController extends AbstractController
     }
 
     #[Route('/filme/adicionar', name: 'movie_add')]
-    public function add(Request $request): Response
+    public function addMovie(Request $request): Response
     {
 
         $form = $this->createForm(MovieType::class);
