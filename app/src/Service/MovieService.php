@@ -18,9 +18,9 @@ class MovieService
         $movie->setTitle($form['title']);
         $movie->setDuration($form['duration']);
         $movie->setDescription($form['description']);
-        $movie->setReleaseDate($form['release_data']);
+        $movie->setReleaseDate($form['release_date']);
         $movie->setCategory($form['category']);
-        
+
         $this->movieRepository->save($movie, true);
 
         return $movie;
