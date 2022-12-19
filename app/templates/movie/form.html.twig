@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-    {{ title }}
-{% endblock %}
-
 {% block body %}
-    {# <h1>{{ title }}</h1>
-    <p>{{ message }}</p> #}
+    {{ form(movie_form) }}
+    <hr>
+    
 
-    {{ form(form) }}
+    {% for movie in movies %}
+    <div>
+        <h2><span>{{movie.title}}</span></h2>
+        <p>Sinops: <span>{{movie.description}}</span></p>
+        <hr>
+    </div>
+    {% endfor %}
+
 {% endblock %}

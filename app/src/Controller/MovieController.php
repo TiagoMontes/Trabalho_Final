@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Movie;
 use App\Form\Type\MovieType;
 use App\Repository\MovieRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\MovieService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MovieController extends AbstractController
 {
+    public function __construct(private MovieService $movieService, private MovieRepository $movieRepository)
+    {
+        
+    }
+
     #[Route('/filme', name: 'movie_index')]
     public function index(MovieRepository $movieRepository)
     {
@@ -23,24 +27,21 @@ class MovieController extends AbstractController
     }
 
     #[Route('/filme/adicionar', name: 'movie_add')]
-    public function add(Request $request, EntityManagerInterface $entityManager): Response
+    public function addMovie(Request $request): Response
     {
-        $message = '';
-        $movie = new Movie();
 
-        $form = $this->createForm(MovieType::class, $movie);
+        $form = $this->createForm(MovieType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($movie);
-            $entityManager->flush();
-            $message = 'Filme cadastrado';
+            $this->movieService->register($form->getData());
         }
 
-        $data['title'] = 'Adicionar novo filme';
-        $data['form'] = $form;
-        $data['message'] = $message;
+        $movieList = $this->movieRepository->findAll();
 
-        return $this->render('movie/form.html.twig', $data);
+        return $this->render('movie/form.html.twig',[
+            'movie_form' => $form,
+            'movies' => $movieList
+        ]);
     }
 }
