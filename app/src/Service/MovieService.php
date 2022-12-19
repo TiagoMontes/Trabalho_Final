@@ -25,4 +25,17 @@ class MovieService
 
         return $movie;
     }
+
+    public function update($movie): Movie
+    {
+        $movie->setTitle($movie->getTitle());
+        $movie->setDuration($movie->getDuration());
+        $movie->setDescription($movie->getDescription());
+        $movie->setReleaseDate($movie->getReleaseDate());
+        $movie->setCategory($movie->getCategory());
+
+        $this->movieRepository->save($movie, true);
+
+        return $movie;
+    }
 }

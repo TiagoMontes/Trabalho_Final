@@ -1,9 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ title }}
+    Gerenciando filmes
 {% endblock %}
 
 {% block body %}
     <h1>{{ title }}</h1>
+    <a href="{{ path('movie_add') }}" class='btn btn-primary'>Adicionar novo filme</a>
+
+
+
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Filme</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in movies %}
+                <tr>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.description }}</td>
+                    <td>
+                        <a href='{{ path("movie_edit", {id: movie.id}) }}' class='btn btn-primary' name='id'>Editar</a>
+                        <a href='{{ path("movie_delete", {id: movie.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

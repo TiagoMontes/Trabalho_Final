@@ -20,8 +20,8 @@ class MovieController extends AbstractController
     #[Route('/filme', name: 'movie_index')]
     public function index(MovieRepository $movieRepository)
     {
-        $data['movies'] = $movieRepository->findAll();
         $data['title'] = 'Gerenciar Filmes';
+        $data['movies'] = $movieRepository->findAll();
 
         return $this->render('movie/index.html.twig', $data);
     }
@@ -29,19 +29,49 @@ class MovieController extends AbstractController
     #[Route('/filme/adicionar', name: 'movie_add')]
     public function addMovie(Request $request): Response
     {
-
         $form = $this->createForm(MovieType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->movieService->register($form->getData());
+            return $this->redirect('/filme');
         }
 
         $movieList = $this->movieRepository->findAll();
 
         return $this->render('movie/form.html.twig',[
             'movie_form' => $form,
-            'movies' => $movieList
+        ]);
+    }
+
+
+    #[Route('/filme/delete/{id}', name: 'movie_delete')]
+    public function deleteMovie(int $id): Response
+    {
+        $movieId = $this->movieRepository->find($id);
+
+        $this->movieRepository->remove($movieId, true);
+
+        return $this->redirect('/filme');
+    }
+
+    #[Route('/filme/edit/{id}', name: 'movie_edit')]
+    public function editMovie(int $id, Request $request)
+    {
+        $movie = $this->movieRepository->find($id);
+
+        $form = $this->createForm(MovieType::class, $movie);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->movieService->update($movie);
+
+            return $this->redirect('/filme');
+        }
+
+
+        return $this->render('movie/form.html.twig', [
+            'movie_form' => $form,
         ]);
     }
 }
