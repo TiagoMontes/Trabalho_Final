@@ -34,15 +34,13 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->register($form->getData());
+            return $this->redirectToRoute('category_index');
         }
-
-        $categoryList = $this->categoryRepository->findAll();
-
         return $this->render('category/form.html.twig', [
             'category_form' => $form,
-            'categories' => $categoryList,
-            'title' => 'Adicionar Categoria'
+            'title' => 'Adicionar Categoria',
         ]);
+        
     }
 
     // #[Route('/categoria/editar/{id}', name: 'category_edit')]
@@ -60,7 +58,7 @@ class CategoryController extends AbstractController
     // }
 
     #[Route('/categoria/delete/{id}', name: 'category_delete')]
-    public function deleteCategory(int $id, Request $request): Response
+    public function deleteCategory(int $id): Response
     {
         $categoryId = $this->categoryRepository->find($id);
 
