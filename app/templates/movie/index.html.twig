@@ -21,11 +21,11 @@
         </thead>
             <tbody>
             {% for movie in movies %}
-                <tr>
+                <tr id='movie'>
                     <td>{{ movie.title }}</td>
                     <td>{{ movie.description }}</td>
                     <td>{{ movie.category }}</td>
-                    <td>{{ movie.duration }} min</td>
+                    <td id='duration'>{{ movie.duration }} min</td>
                     {# <td>{{ movie.release_date }}</td> #}
                     <td>{{ movie.director }}</td>
                     <td>
@@ -40,4 +40,18 @@
         <a href='{{ path("category_index") }}' class='btn btn-primary mt-3'>Categorias</a>
         <a href='{{ path("director_index") }}' class='btn btn-primary mt-3'>Diretores</a>
     </div>
+
+    <script>
+        const durations = document.querySelectorAll("#duration")
+
+        durations.forEach(duration => {
+            const durationFormat = duration.innerText.replace(' min', '')
+
+            if (durationFormat < 100) {
+                duration.parentNode.classList.add("border", "border-danger", "mt-2")
+            } else {
+                duration.parentNode.classList.add("border", "border-warning", "mt-2")
+            }
+        })
+    </script>  
 {% endblock %}
