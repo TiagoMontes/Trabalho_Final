@@ -26,6 +26,11 @@ class MovieType extends AbstractType
                 'choice_label' => 'categoryName',
                 'label' => 'Gênero'
             ])
+            ->add('director', EntityType::class, [
+                'class' => Director::class,
+                'choice_label' => 'first_name',
+                'label' => 'Diretor'
+            ])
             ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary mt-3 w-100')));
     }
 }
