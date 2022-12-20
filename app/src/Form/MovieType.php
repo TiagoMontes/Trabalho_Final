@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Category;
-use Doctrine\DBAL\Types\FloatType;
+use App\Entity\Director;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -21,11 +21,16 @@ class MovieType extends AbstractType
             ->add('description', TextType::class, ['label' => 'Descrição: '])
             ->add('duration', NumberType::class, ['label' => 'Duração: '])
             ->add('release_date', DateType::class, ['label' => 'Data de lançamento: '])
+            ->add('director', EntityType::class, [
+                'class' => Director::class,
+                'choice_label' => 'first_name',
+                'label' => 'Diretor'
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'categoryName',
                 'label' => 'Gênero'
             ])
-            ->add('Salvar', SubmitType::class);
+            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary')));
     }
 }

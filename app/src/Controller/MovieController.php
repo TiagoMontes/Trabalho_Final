@@ -37,13 +37,10 @@ class MovieController extends AbstractController
             return $this->redirect('/filme');
         }
 
-        $movieList = $this->movieRepository->findAll();
-
         return $this->render('movie/form.html.twig',[
             'movie_form' => $form,
         ]);
     }
-
 
     #[Route('/filme/delete/{id}', name: 'movie_delete')]
     public function deleteMovie(int $id): Response
@@ -68,7 +65,6 @@ class MovieController extends AbstractController
 
             return $this->redirect('/filme');
         }
-
 
         return $this->render('movie/form.html.twig', [
             'movie_form' => $form,

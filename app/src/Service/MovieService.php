@@ -20,6 +20,7 @@ class MovieService
         $movie->setDescription($form['description']);
         $movie->setReleaseDate($form['release_date']);
         $movie->setCategory($form['category']);
+        $movie->setDirector($form['director']);
 
         $this->movieRepository->save($movie, true);
 
@@ -33,6 +34,7 @@ class MovieService
         $movie->setDescription($movie->getDescription());
         $movie->setReleaseDate($movie->getReleaseDate());
         $movie->setCategory($movie->getCategory());
+        $movie->setDirector($movie->getDirector());
 
         $this->movieRepository->save($movie, true);
 
