@@ -30,7 +30,7 @@ class DirectorService
         $director->setFirstName($director->getFirstName());
         $director->setLastName($director->getLastName());
         $director->setAge($director->getAge());
-        $director->setOscars($director->getOscars);
+        $director->setOscars($director->getOscars());
 
         $this->directorRepository->save($director, true);
 

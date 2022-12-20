@@ -39,6 +39,7 @@ class DirectorController extends AbstractController
 
         return $this->render('director/form.html.twig',[
             'director_form' => $form,
+            'title' => 'Adicionar Diretor'
         ]);
     }
 
@@ -47,7 +48,7 @@ class DirectorController extends AbstractController
     {
         $director = $this->directorRepository->find($id);
 
-        $this->movieRepository->remove($director, true);
+        $this->directorRepository->remove($director, true);
 
         return $this->redirectToRoute('director_index');
     }
@@ -61,13 +62,14 @@ class DirectorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->movieService->update($director);
+            $this->directorService->update($director);
 
             return $this->redirectToRoute('director_index');
         }
 
         return $this->render('director/form.html.twig', [
-            'movie_form' => $form,
+            'director_form' => $form,
+            'title' => 'Editar Diretor'
         ]);
     }
 }
