@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="">
-    {{ form(movie_form) }}
+    <div class="d-flex justify-content-center">
+        <div class="border border-primary p-5 m-5 rounded-4">
+            <h1 class="mb-5"> Cadastro de filme </h1>
+            {{ form(movie_form) }}
+        </div>
     </div>
 {% endblock %}
