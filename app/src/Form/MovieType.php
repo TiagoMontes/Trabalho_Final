@@ -17,9 +17,9 @@ class MovieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, ['label' => 'Nome do Filme: '])
-            ->add('description', TextType::class, ['label' => 'Descrição: '])
-            ->add('duration', NumberType::class, ['label' => 'Duração: '])
+            ->add('title', TextType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Nome do Filme: '])
+            ->add('description', TextType::class, array('attr' => array('class' => 'mt-3')),  ['label' => 'Descrição: '])
+            ->add('duration', NumberType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Duração: '])
             ->add('release_date', DateType::class, ['label' => 'Data de lançamento: '])
             ->add('director', EntityType::class, [
                 'class' => Director::class,
@@ -31,6 +31,6 @@ class MovieType extends AbstractType
                 'choice_label' => 'categoryName',
                 'label' => 'Gênero'
             ])
-            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary')));
+            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary mt-3')));
     }
 }

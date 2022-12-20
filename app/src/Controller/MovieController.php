@@ -34,7 +34,7 @@ class MovieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->movieService->register($form->getData());
-            return $this->redirect('/filme');
+            return $this->redirectToRoute('movie_index');
         }
 
         return $this->render('movie/form.html.twig',[
@@ -53,21 +53,22 @@ class MovieController extends AbstractController
     }
 
     #[Route('/filme/edit/{id}', name: 'movie_edit')]
-    public function editMovie(int $id, Request $request)
+    public function editMovie($id, Request $request): Response
     {
         $movie = $this->movieRepository->find($id);
 
-        $form = $this->createForm(MovieType::class, $movie);
+        $form = $this->createForm(MovieType::class, $movie); 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->movieService->update($movie);
+            $this->movieService->update($movie); 
 
-            return $this->redirect('/filme');
+            return $this->redirectToRoute('movie_index');
         }
 
         return $this->render('movie/form.html.twig', [
             'movie_form' => $form,
+            'title' => 'Editar Filme'
         ]);
     }
 }
