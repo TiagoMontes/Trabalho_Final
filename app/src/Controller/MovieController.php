@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\Type\MovieType;
 use App\Repository\MovieRepository;
 use App\Service\MovieService;
+use App\Entity\Movie;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,11 +30,13 @@ class MovieController extends AbstractController
     #[Route('/movie/add', name: 'movie_add')]
     public function newMovie(Request $request): Response
     {
-        $form = $this->createForm(MovieType::class);
+
+        $movie = new Movie;
+        $form = $this->createForm(MovieType::class, $movie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->movieService->register($form->getData());
+            $this->movieService->register($movie);
             return $this->redirectToRoute('movie_index');
         }
 

@@ -11,17 +11,8 @@ class MovieService
 
     }
 
-    public function register(array $form): Movie
+    public function register($movie): Movie
     {
-
-        $movie = new Movie;
-        $movie->setTitle($form['title']);
-        $movie->setDuration($form['duration']);
-        $movie->setDescription($form['description']);
-        $movie->setReleaseDate($form['release_date']);
-        $movie->setCategory($form['category']);
-        $movie->setDirector($form['director']);
-
         $this->movieRepository->save($movie, true);
 
         return $movie;
@@ -29,13 +20,6 @@ class MovieService
 
     public function update($movie): Movie
     {
-        $movie->setTitle($movie->getTitle());
-        $movie->setDuration($movie->getDuration());
-        $movie->setDescription($movie->getDescription());
-        $movie->setReleaseDate($movie->getReleaseDate());
-        $movie->setCategory($movie->getCategory());
-        $movie->setDirector($movie->getDirector());
-
         $this->movieRepository->save($movie, true);
 
         return $movie;
