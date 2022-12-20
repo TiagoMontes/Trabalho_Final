@@ -17,20 +17,20 @@ class MovieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Nome do Filme: '])
-            ->add('description', TextType::class, array('attr' => array('class' => 'mt-3')),  ['label' => 'Descrição: '])
-            ->add('duration', NumberType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Duração: '])
-            ->add('release_date', DateType::class, ['label' => 'Data de lançamento: '])
-            ->add('director', EntityType::class, [
-                'class' => Director::class,
-                'choice_label' => 'first_name',
-                'label' => 'Diretor'
-            ])
+            ->add('title', TextType::class, array('attr' => array('class' => 'form-control mb-3')), ['label' => 'Nome do Filme: '])
+            ->add('description', TextType::class, array('attr' => array('class' => 'form-control mb-3')), ['label' => 'Descrição: '])
+            ->add('duration', NumberType::class, array('attr' => array('class' => 'form-control mb-3')), ['label' => 'Duração: '])
+            ->add('release_date', DateType::class, array('attr' => array('class' => 'form-control mb-3')) ,['label' => 'Data de lançamento: '])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'categoryName',
                 'label' => 'Gênero'
             ])
-            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary mt-3')));
+            ->add('director', EntityType::class, [
+                'class' => Director::class,
+                'choice_label' => 'first_name',
+                'label' => 'Diretor'
+            ])
+            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary mt-3 w-100')));
     }
 }
