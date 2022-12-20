@@ -7,14 +7,10 @@
 {% block body %}
     <div class="container text-center w-50 border p-3 rounded-3 mt-5">
         <h1 class='mt-3'>{{ title }}</h1>
-
         {{ form_start(movie_form) }}
-
-            {{ form_widget(movie_form) }}
-
-            <a href='{{ path("movie_index") }}' class='btn btn-primary mt-3 w-100'>Cancelar</a>
-
+        {# {{ form_widget(movie_form) }} #}
+        {# O que widget ta fazendo? #}
         {{ form_end(movie_form) }}
+        <a href='{{ path("movie_index") }}' class='btn btn-primary mt-3 w-100'>Cancelar</a>
     </div>
-
 {% endblock %}

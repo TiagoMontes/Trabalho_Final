@@ -52,6 +52,6 @@ class MovieType extends AbstractType
                 'label' => 'Diretor',
                 'attr' => array('class' => 'form-control mb-3')
             ])
-            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary mt-3 w-100')));
+            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary w-100')));
     }
 }
