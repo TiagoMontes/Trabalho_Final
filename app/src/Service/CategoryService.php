@@ -24,7 +24,8 @@ class CategoryService
 
     public function update($category): Category
     {
-        $category->setCategoryName();
+        $category->setCategoryName($category->getCategoryName());
+        $this->categoryRepository->save($category, true);
 
         return $category;
     }

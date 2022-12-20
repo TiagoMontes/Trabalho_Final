@@ -6,27 +6,29 @@
 
 {% block body %}
     <h1>{{ title }}</h1>
-    <a href="{{ path('category_add') }}" class='btn btn-primary'>Criar nova categoria</a>
+    <a href="{{ path('category_new') }}" class='btn btn-primary'>Criar nova categoria</a>
     <table class='table'>
-      <thead>
-        <tr>
-          <td>#</td>
-          <td>Descrição</td>
-          <td>Ações</td>
-        </tr>
-      </thead>
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Descrição</td>
+                <td>Ações</td>
+            </tr>
+        </thead>
 
-      <tbody>
-        {% for category in categories %}
-          <tr>
-            <td>{{ category.id }}</td>
-            <td>{{ category.categoryName }}</td>
-            <td>
-              <a href='#' class='btn btn-primary'>Editar</a>
-              <a href='{{ path("category_delete", {id: category.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
+        <tbody>
+                {% for category in categories %}
+
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.categoryName }}</td>
+                    <td>
+                    <a href='{{ path("category_update", {id: category.id}) }}' class='btn btn-primary'>Editar</a>
+                    <a href='{{ path("category_delete", {id: category.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
+                    </td>
+                </tr>
+                
+                {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
