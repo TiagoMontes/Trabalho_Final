@@ -13,10 +13,22 @@ class DirectorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('first_name', TextType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Nome: '])
-            ->add('last_name', TextType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Sobrenome: '])
-            ->add('age', NumberType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Idade: '])
-            ->add('oscars', NumberType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Oscars: '])
-            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary mt-3')));
+            ->add('first_name', TextType::class, [
+                'label' => 'Nome',
+                'attr' => array('class' => 'mb-3 form-control')    
+            ])
+            ->add('last_name', TextType::class, [
+                'label' => 'Sobrenome',
+                'attr' => array('class' => 'mb-3 form-control'),
+            ])
+            ->add('age', NumberType::class, [
+                'label' => 'Idade',
+                'attr' => array('class' => 'mb-3 form-control'),
+            ])
+            ->add('oscars', NumberType::class, [
+                'label' => 'Oscars',
+                'attr' => array('class' => 'mb-3 form-control')
+            ])
+            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary form-control')));
     }   
 }

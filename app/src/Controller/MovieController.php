@@ -17,7 +17,7 @@ class MovieController extends AbstractController
         
     }
 
-    #[Route('/filme', name: 'movie_index')]
+    #[Route('/movie', name: 'movie_index')]
     public function index(MovieRepository $movieRepository)
     {
         $data['title'] = 'Gerenciar Filmes';
@@ -26,8 +26,8 @@ class MovieController extends AbstractController
         return $this->render('movie/index.html.twig', $data);
     }
 
-    #[Route('/filme/adicionar', name: 'movie_add')]
-    public function addMovie(Request $request): Response
+    #[Route('/movie/add', name: 'movie_add')]
+    public function newMovie(Request $request): Response
     {
         $form = $this->createForm(MovieType::class);
         $form->handleRequest($request);
@@ -39,20 +39,21 @@ class MovieController extends AbstractController
 
         return $this->render('movie/form.html.twig',[
             'movie_form' => $form,
+            'title' => 'Adicionar Filme'
         ]);
     }
 
-    #[Route('/filme/delete/{id}', name: 'movie_delete')]
+    #[Route('/movie/delete/{id}', name: 'movie_delete')]
     public function deleteMovie(int $id): Response
     {
         $movieId = $this->movieRepository->find($id);
 
         $this->movieRepository->remove($movieId, true);
 
-        return $this->redirect('/filme');
+        return $this->redirectToRoute('movie_index');
     }
 
-    #[Route('/filme/edit/{id}', name: 'movie_edit')]
+    #[Route('/movie/update/{id}', name: 'movie_update')]
     public function editMovie($id, Request $request): Response
     {
         $movie = $this->movieRepository->find($id);

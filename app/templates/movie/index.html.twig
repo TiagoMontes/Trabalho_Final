@@ -30,7 +30,7 @@
                     {# <td>{{ movie.release_date }}</td> #}
                     <td>{{ movie.director }}</td>
                     <td>
-                        <a href='{{ path("movie_edit", {id: movie.id}) }}' class='btn btn-primary' name='id'>Editar</a>
+                        <a href='{{ path("movie_update", {id: movie.id}) }}' class='btn btn-primary' name='id'>Editar</a>
                         <a href='{{ path("movie_delete", {id: movie.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
                     </td>
                 </tr>
