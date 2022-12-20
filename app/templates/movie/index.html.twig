@@ -19,7 +19,7 @@
                 <th scope="col">Ações</th>
             </tr>
         </thead>
-        <tbody>
+            <tbody>
             {% for movie in movies %}
                 <tr>
                     <td>{{ movie.title }}</td>
@@ -36,7 +36,6 @@
             {% endfor %}
         </tbody>
     </table>
-
     <div>
         <a href='{{ path("category_index") }}' class='btn btn-primary mt-3'>Categorias</a>
         <a href='{{ path("director_index") }}' class='btn btn-primary mt-3'>Diretores</a>

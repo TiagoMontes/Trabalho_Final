@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Form\Type\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Service\CategoryService;
@@ -29,11 +30,13 @@ class CategoryController extends AbstractController
     #[Route('/category/new', name: 'category_new')]
     public function categoryAdd(Request $request): Response
     {
-        $form = $this->createForm(CategoryType::class);
+        $category = new Category;
+
+        $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->categoryService->register($form->getData());
+            $this->categoryService->register($category);
 
             return $this->redirectToRoute('category_index');
         }
