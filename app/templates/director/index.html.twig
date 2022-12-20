@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {# {{ title }} #}
+{% endblock %}
+
+{% block body %}
+    {# <h1>{{ title }}</h1> #}
+    <a href="{{ path('director_add') }}" class='btn btn-primary'>Adicionar novo diretor</a>
+    <table class='table'>
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>Nome</td>
+          <td>Sobrenome</td>
+          <td>Idade</td>
+          <td>Oscars</td>
+          <td>Ações</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for director in directors %}
+          <tr>
+            <td>{{ director.id }}</td>
+            <td>{{ director.firstName }}</td>
+            <td>{{ director.lastName }}</td>
+            <td>{{ director.age }}</td>
+            <td>{{ director.oscars }}</td>
+            <td>
+              <a href='{{ path("director_update", {id: director.id}) }}' class='btn btn-primary'>Editar</a>
+              <a href='{{ path("director_delete", {id: director.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

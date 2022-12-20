@@ -8,13 +8,14 @@
     <h1>{{ title }}</h1>
     <a href="{{ path('movie_add') }}" class='btn btn-primary'>Adicionar novo filme</a>
 
-
-
     <table class="table table-dark table-striped">
         <thead>
             <tr>
                 <th scope="col">Filme</th>
                 <th scope="col">Descrição</th>
+                <th scope="col">Duração</th>
+                {# <th scope="col">Lançamento</th> #}
+                <th scope="col">Diretor</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
@@ -23,6 +24,9 @@
                 <tr>
                     <td>{{ movie.title }}</td>
                     <td>{{ movie.description }}</td>
+                    <td>{{ movie.duration }} min</td>
+                    {# <td>{{ movie.release_date }}</td> #}
+                    <td>{{ movie.director }}</td>
                     <td>
                         <a href='{{ path("movie_edit", {id: movie.id}) }}' class='btn btn-primary' name='id'>Editar</a>
                         <a href='{{ path("movie_delete", {id: movie.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
