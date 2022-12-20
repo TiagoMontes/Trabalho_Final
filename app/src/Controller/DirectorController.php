@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/director', name: 'director_')]
 class DirectorController extends AbstractController
 {
     public function __construct(private DirectorRepository $directorRepository, private DirectorService $directorService)
@@ -17,7 +18,7 @@ class DirectorController extends AbstractController
         
     }
 
-    #[Route('/director', name: 'director_index')]
+    #[Route('/', name: 'index')]
     public function index(DirectorRepository $directorRepository)
     {
         $data['title'] = 'Gerenciar Diretores';
@@ -26,7 +27,7 @@ class DirectorController extends AbstractController
         return $this->render('director/index.html.twig', $data);
     }
 
-    #[Route('/director/add', name: 'director_add')]
+    #[Route('/add', name: 'add')]
     public function addDirector(Request $request): Response
     {
         $form = $this->createForm(DirectorType::class);
@@ -34,7 +35,7 @@ class DirectorController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->directorService->register($form->getData());
-            return $this->redirect('/director');
+            return $this->redirectToRoute('director_index');
         }
 
         return $this->render('director/form.html.twig',[
@@ -43,7 +44,7 @@ class DirectorController extends AbstractController
         ]);
     }
 
-    #[Route('/director/delete/{id}', name: 'director_delete')]
+    #[Route('/delete/{id}', name: 'delete')]
     public function deleteDirector(int $id): Response
     {
         $director = $this->directorRepository->find($id);
@@ -53,7 +54,7 @@ class DirectorController extends AbstractController
         return $this->redirectToRoute('director_index');
     }
 
-    #[Route('/director/update/{id}', name: 'director_update')]
+    #[Route('/update/{id}', name: 'update')]
     public function updateDirector(int $id, Request $request): Response
     {
         $director = $this->directorRepository->find($id);

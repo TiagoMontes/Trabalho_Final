@@ -25,7 +25,7 @@ class DirectorType extends AbstractType
             ->add('age', NumberType::class, [
                 'label' => 'Idade',
                 'attr' => ['class' => 'mb-3 form-control text-center'],
-                'constraints' => new Assert\Type(NumberType::class)
+                'constraints' => new Assert\Positive()
             ])
             ->add('oscars', NumberType::class, [
                 'label' => 'Oscars',
