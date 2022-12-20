@@ -13,10 +13,10 @@ class DirectorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('first_name', TextType::class, ['label' => 'Nome: '])
-            ->add('last_name', TextType::class, ['label' => 'Sobrenome: '])
-            ->add('age', NumberType::class, ['label' => 'Idade: '])
-            ->add('oscars', NumberType::class, ['label' => 'Quantidade de oscars: '])
-            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary')));
+            ->add('first_name', TextType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Nome: '])
+            ->add('last_name', TextType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Sobrenome: '])
+            ->add('age', NumberType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Idade: '])
+            ->add('oscars', NumberType::class, array('attr' => array('class' => 'mt-3')), ['label' => 'Oscars: '])
+            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary mt-3')));
     }   
 }
