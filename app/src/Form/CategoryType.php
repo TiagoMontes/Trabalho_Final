@@ -12,7 +12,10 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('category_name', TextType::class, ['label' => 'Nome da categoria: '])
-            ->add('Salvar', SubmitType::class);
+            ->add('category_name', TextType::class, [
+                'label' => 'Nome da categoria: ',
+                'attr' => array('class' => 'mb-3 form-control')  
+                ])
+            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary form-control mb-2')));
     }
 }

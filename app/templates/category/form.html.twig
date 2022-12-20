@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ title }}</h1>
-    
-    {{ form(category_form) }}
+    <div class="container text-center w-50 border">
 
-    <a href="{{ path('category_index')}}" class=" btn btn-primary">Retornar</a>
+        <h1>{{ title }}</h1>
+        
+        {{ form(category_form) }}
 
+        <a href="{{ path('category_index')}}" class=" btn btn-primary w-100">Retornar</a>
+    </div>
 {% endblock %}
