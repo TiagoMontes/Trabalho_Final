@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/category', name: 'category_')]
 class CategoryController extends AbstractController
 {
     public function __construct(private CategoryService $categoryService, private CategoryRepository $categoryRepository)
@@ -18,7 +19,7 @@ class CategoryController extends AbstractController
         
     }
 
-    #[Route('/category', name: 'category_index')]
+    #[Route('/', name: 'index')]
     public function index(CategoryRepository $categoryRepository): Response
     {
         $data['categories'] = $categoryRepository->findAll();
@@ -27,7 +28,7 @@ class CategoryController extends AbstractController
         return $this->render('category/index.html.twig', $data);
     }
 
-    #[Route('/category/new', name: 'category_new')]
+    #[Route('/new', name: 'new')]
     public function categoryAdd(Request $request): Response
     {
         $category = new Category;
@@ -47,7 +48,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/category/update/{id}', name: 'category_update')]
+    #[Route('/update/{id}', name: 'update')]
     public function categoryUpdate(int $id, Request $request): Response
     {
         $category = $this->categoryRepository->find($id);
@@ -67,7 +68,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/category/delete/{id}', name: 'category_delete')]
+    #[Route('/delete/{id}', name: 'delete')]
     public function categoryDelete(int $id): Response
     {
         $categoryId = $this->categoryRepository->find($id);

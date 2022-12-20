@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/movie', name: 'movie_')]
 class MovieController extends AbstractController
 {
     public function __construct(private MovieService $movieService, private MovieRepository $movieRepository)
@@ -18,7 +19,7 @@ class MovieController extends AbstractController
         
     }
 
-    #[Route('/movie', name: 'movie_index')]
+    #[Route('/', name: 'index')]
     public function index(MovieRepository $movieRepository)
     {
         $data['title'] = 'Gerenciar Filmes';
@@ -27,7 +28,7 @@ class MovieController extends AbstractController
         return $this->render('movie/index.html.twig', $data);
     }
 
-    #[Route('/movie/add', name: 'movie_add')]
+    #[Route('/add', name: 'add')]
     public function newMovie(Request $request): Response
     {
 
@@ -46,7 +47,7 @@ class MovieController extends AbstractController
         ]);
     }
 
-    #[Route('/movie/delete/{id}', name: 'movie_delete')]
+    #[Route('/delete/{id}', name: 'delete')]
     public function deleteMovie(int $id): Response
     {
         $movieId = $this->movieRepository->find($id);
@@ -56,7 +57,7 @@ class MovieController extends AbstractController
         return $this->redirectToRoute('movie_index');
     }
 
-    #[Route('/movie/update/{id}', name: 'movie_update')]
+    #[Route('/update/{id}', name: 'update')]
     public function editMovie($id, Request $request): Response
     {
         $movie = $this->movieRepository->find($id);
