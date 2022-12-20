@@ -6,7 +6,7 @@ use App\Entity\Category;
 use App\Entity\Director;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -19,19 +19,26 @@ class MovieType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Nome do Filme', 
-                'attr' => array('class' => 'form-control mb-3')
+                'attr' => ['class' => 'form-control mb-3 text-center']
             ])
             ->add('description', TextType::class, [
                 'label' => 'Descrição', 
-                'attr' => array('class' => 'form-control mb-3')
+                'attr' => ['class' => 'form-control mb-3 text-center']
             ])
             ->add('duration', NumberType::class, [
-                'label' => 'Duração', 
-                'attr' => array('class' => 'form-control mb-3')
+                'label' => 'Duração',
+                'attr' => [
+                    'class' => 'form-control mb-3 text-center', 
+                    'placeholder' => 'min'
+                ]
             ])
-            ->add('release_date', DateType::class, [
-                'label' => 'Data de lançamento', 
-                'attr' => array('class' => 'form-control mb-3')
+            ->add('release_date', BirthdayType::class, [
+                'label' => 'Data de Lançamento', 
+                'attr' => array('class' => 'mb-2'),
+                'format' => 'dd-MM-yyyy',
+                'placeholder' => [
+                    'year' => 'Ano', 'month' => 'Mês', 'day' => 'Dia',
+                ],
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
