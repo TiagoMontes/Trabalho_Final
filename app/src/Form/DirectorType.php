@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class DirectorType extends AbstractType
 {
@@ -15,19 +16,20 @@ class DirectorType extends AbstractType
         $builder
             ->add('first_name', TextType::class, [
                 'label' => 'Nome',
-                'attr' => array('class' => 'mb-3 form-control')    
+                'attr' => ['class' => 'mb-3 form-control text-center'], 
             ])
             ->add('last_name', TextType::class, [
                 'label' => 'Sobrenome',
-                'attr' => array('class' => 'mb-3 form-control'),
+                'attr' => ['class' => 'mb-3 form-control text-center'],
             ])
             ->add('age', NumberType::class, [
                 'label' => 'Idade',
-                'attr' => array('class' => 'mb-3 form-control'),
+                'attr' => ['class' => 'mb-3 form-control text-center'],
+                'constraints' => new Assert\Type(NumberType::class)
             ])
             ->add('oscars', NumberType::class, [
                 'label' => 'Oscars',
-                'attr' => array('class' => 'mb-3 form-control')
+                'attr' => ['class' => 'mb-3 form-control text-center'],
             ])
             ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary form-control')));
     }   

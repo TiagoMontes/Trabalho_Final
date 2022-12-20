@@ -17,7 +17,7 @@ class CategoryController extends AbstractController
         
     }
 
-    #[Route('/categoria', name: 'category_index')]
+    #[Route('/category', name: 'category_index')]
     public function index(CategoryRepository $categoryRepository): Response
     {
         $data['categories'] = $categoryRepository->findAll();
@@ -26,39 +26,46 @@ class CategoryController extends AbstractController
         return $this->render('category/index.html.twig', $data);
     }
 
-    #[Route('/categoria/adicionar', name: 'category_add')]
-    public function addCategory(Request $request): Response
+    #[Route('/category/new', name: 'category_new')]
+    public function categoryAdd(Request $request): Response
     {
         $form = $this->createForm(CategoryType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->register($form->getData());
+
             return $this->redirectToRoute('category_index');
         }
+
         return $this->render('category/form.html.twig', [
             'category_form' => $form,
             'title' => 'Adicionar Categoria',
         ]);
-        
     }
 
-    // #[Route('/categoria/editar/{id}', name: 'category_edit')]
-    // public function editCategory($id, Request $request): Response
-    // {
-    //     $categoryId = $request->request->get('id');
-    //     $category = $this->categoryRepository->find($categoryId);
+    #[Route('/category/update/{id}', name: 'category_update')]
+    public function categoryUpdate(int $id, Request $request): Response
+    {
+        $category = $this->categoryRepository->find($id);
 
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $this->categoryService->update($category);
-    //     }
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
 
-    //     return 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->categoryService->update($category);
 
-    // }
+            return $this->redirectToRoute('category_index');
+        }
 
-    #[Route('/categoria/delete/{id}', name: 'category_delete')]
-    public function deleteCategory(int $id): Response
+        return $this->render('category/form.html.twig', [
+            'category_form' => $form,
+            'title' => 'Editar Categoria',
+        ]);
+    }
+
+    #[Route('/category/delete/{id}', name: 'category_delete')]
+    public function categoryDelete(int $id): Response
     {
         $categoryId = $this->categoryRepository->find($id);
 
