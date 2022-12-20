@@ -19,22 +19,24 @@ class MovieType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Nome do Filme', 
-                'attr' => ['class' => 'form-control mb-3 text-center']
+                'attr' => ['class' => 'form-control mb-3']
             ])
             ->add('description', TextType::class, [
                 'label' => 'Descrição', 
-                'attr' => ['class' => 'form-control mb-3 text-center']
+                'attr' => ['class' => 'form-control mb-3']
             ])
             ->add('duration', NumberType::class, [
                 'label' => 'Duração',
                 'attr' => [
-                    'class' => 'form-control mb-3 text-center', 
+                    'class' => 'form-control mb-3', 
                     'placeholder' => 'min'
                 ]
             ])
             ->add('release_date', BirthdayType::class, [
+                'widget' => 'single_text',
+                'html5' => false,
                 'label' => 'Data de Lançamento', 
-                'attr' => array('class' => 'mb-2'),
+                'attr' => array('class' => 'form-control mb-2'),
                 'format' => 'dd-MM-yyyy',
                 'placeholder' => [
                     'year' => 'Ano', 'month' => 'Mês', 'day' => 'Dia',
