@@ -33,7 +33,7 @@ class MovieType extends AbstractType
             ])
             ->add('release_date', TextType::class, [
                 'label' => 'Data de Lançamento', 
-                'attr' => array('class' => 'form-control mb-2'),
+                'attr' => array('class' => 'form-control mb-3'),
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
@@ -47,6 +47,6 @@ class MovieType extends AbstractType
                 'label' => 'Diretor',
                 'attr' => array('class' => 'form-control mb-3')
             ])
-            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary w-100')));
+            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary mt-4 w-100')));
     }
 }
