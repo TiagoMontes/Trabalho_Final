@@ -7,6 +7,7 @@ use App\Entity\Director;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -32,15 +33,13 @@ class MovieType extends AbstractType
                     'placeholder' => 'min'
                 ]
             ])
-            ->add('release_date', BirthdayType::class, [
+            ->add('release_date', DateType::class, [
                 'widget' => 'single_text',
                 'html5' => false,
                 'label' => 'Data de Lançamento', 
                 'attr' => array('class' => 'form-control mb-2'),
-                'format' => 'dd-MM-yyyy',
-                'placeholder' => [
-                    'year' => 'Ano', 'month' => 'Mês', 'day' => 'Dia',
-                ],
+                'placeholder' => 'dia/mes/ano',
+                'format' => 'dd/MM/yyyy',
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
