@@ -6,11 +6,13 @@ use App\Form\Type\MovieType;
 use App\Repository\MovieRepository;
 use App\Service\MovieService;
 use App\Entity\Movie;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[IsGranted('ROLE_USER')]
 #[Route('/movie', name: 'movie_')]
 class MovieController extends AbstractController
 {
