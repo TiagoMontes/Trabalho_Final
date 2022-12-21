@@ -4,21 +4,20 @@
 
 {% block body %}
     <div class="container text-center w-50 p-3 rounded-3 mt-5 card-form">
-    <h1>Criar nova conta</h1>
+        <h1>Criar nova conta</h1>
         {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.name) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.plainPassword, {
-                label: 'Password'
-            }) }}
-            <div class='mx-auto'>
-                {{ form_row(registrationForm.agreeTerms) }}
-            </div>
-            <div class='align-middle'>
-                <a href="{{ path('register_terms') }}" target='_blank'>Termos</a>
+        {{ form_row(registrationForm.name) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        <div class='mx-auto'>
+            {{ form_row(registrationForm.agreeTerms) }}
+            <a href="{{ path('register_terms') }}" target='_blank'>Termos</a>
+        </div>
 
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-            </div>
+        <div class='align-middle mt-3'>
+            <a href='{{ path("login") }}' class='btn btn-primary w-40'>Login</a>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
         {{ form_end(registrationForm) }}
     <div>
 {% endblock %}
