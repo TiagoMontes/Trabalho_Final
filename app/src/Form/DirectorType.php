@@ -7,7 +7,6 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class DirectorType extends AbstractType
 {
@@ -25,7 +24,6 @@ class DirectorType extends AbstractType
             ->add('age', NumberType::class, [
                 'label' => 'Idade',
                 'attr' => ['class' => 'mb-3 form-control text-center'],
-                'constraints' => new Assert\Positive()
             ])
             ->add('oscars', NumberType::class, [
                 'label' => 'Oscars',

@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MovieRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MovieRepository::class)]
 class Movie
@@ -15,12 +15,28 @@ class Movie
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'O Título deve conter pelo menos {{ limit }} caracteres',
+        maxMessage: 'O Título deve conter no máximo {{ limit }} caracteres',
+    )]
     private ?string $title = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Positive(message: 'O valor deve ser positivo')]
     private ?float $duration = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 10,
+        max: 100,
+        minMessage: 'A Descrição deve conter pelo menos {{ limit }} caracteres',
+        maxMessage: 'A Descrição deve conter no máximo {{ limit }} caracteres',
+    )]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'movies')]
@@ -32,6 +48,7 @@ class Movie
     private ?Director $director = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $releaseDate = null;
 
     public function getId(): ?int
