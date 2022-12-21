@@ -14,8 +14,10 @@ class CategoryService
 
     public function register($category): Category
     {
-        $this->categoryRepository->save($category, true);
-
+        $categoryExist = $this->categoryRepository->findBy(["categoryName" => $category->getCategoryName()]);
+        if ($categoryExist == null) { //
+            $this->categoryRepository->save($category, true);
+        }
         return $category;
     }
 

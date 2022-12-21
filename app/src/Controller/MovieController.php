@@ -34,9 +34,6 @@ class MovieController extends AbstractController
 
         $movie = new Movie;
         $form = $this->createForm(MovieType::class, $movie);
-        $requestData =$request->request->all();
-        
-        
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {

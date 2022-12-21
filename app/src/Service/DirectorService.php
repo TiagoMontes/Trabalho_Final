@@ -12,26 +12,19 @@ class DirectorService
         
     }
 
-    public function register(array $form): Director
+    public function register($director): Director
     {
-        $director = new Director;
-        $director->setFirstName($form['first_name']);
-        $director->setLastName($form['last_name']);
-        $director->setAge($form['age']);
-        $director->setOscars($form['oscars']);
-
+        // ESTA CONDICIONAL SÓ É VIÁVEL CASO EXISTA APENAS UM CAMPO NAME
+        // $directorExist = $this->directorRepository->findBy(["first_name" => $director->getFirstName()]);
+        // if ($directorExist == null) { 
+        // }
+            
         $this->directorRepository->save($director, true);
-
         return $director;
     }
 
     public function update($director): Director
     {
-        $director->setFirstName($director->getFirstName());
-        $director->setLastName($director->getLastName());
-        $director->setAge($director->getAge());
-        $director->setOscars($director->getOscars());
-
         $this->directorRepository->save($director, true);
 
         return $director;
