@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se não for registrado sai daqui{% endblock %}
+
+{% block body %}
+    <div class='row'>
+        <div class='col-4 offset-4'>
+            <h1>Login</h1>
+            {% if error %}
+                <span>{{ error.messageKey | trans(error.messageData, 'security') }}</span>
+            {% endif %}
+
+            <form action="{{ path('login') }}" method='post'>
+                <input type='hidden' name='_target_path' value='/movie' />
+                
+                <label for='username' class='form-label'>Email</label>
+                <input type='text' class='form-control' id='username' name='_username' value='{{ lastUserName }}' />
+                
+                <label for='password' class='form-label'>Senha</label>
+                <input type='password' class='form-control' id='password' name='_password' />
+
+                <button type='submit' class='btn btn-primary mt-3'>Login</button>
+                <a href="{{ path('register') }}" class='btn btn-primary mt-3'>Criar Cadastro</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
