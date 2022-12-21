@@ -17,16 +17,8 @@
             <div class='align-middle'>
                 <a href="{{ path('register_terms') }}" target='_blank'>Termos</a>
 
-                <a type="submit" class="btn btn-primary">Cadastrar</a>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
             </div>
         {{ form_end(registrationForm) }}
     <div>
 {% endblock %}
-
-{# {% block javascripts %}
-    <script>
-        const checkbox = document.querySelector('#registration_form_agreeTerms');
-
-        const x = checkbox.parentNode.classList.add("");
-    </script>
-{% endblock %} #}

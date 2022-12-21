@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,11 +21,31 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nome', 
-                'attr' => ['class' => 'form-control mb-3']
+                'attr' => ['class' => 'form-control mb-3'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Adicione um Nome',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Sua nome deve conter ao menos {{ limit }} caracteres',
+                        'max' => 4096,
+                    ]),
+                ],
             ])
-            ->add('email', TextType::class, [
+            ->add('email', EmailType::class, [
                 'label' => 'Email', 
-                'attr' => ['class' => 'form-control mb-3']
+                'attr' => ['class' => 'form-control mb-3'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Adicione um Email',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Seu email deve conter ao menos {{ limit }} caracteres',
+                        'max' => 4096,
+                    ]),
+                ],
             ])
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'Senha', 
@@ -32,11 +53,11 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control mb-3'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Adicione uma Senha',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Sua senha deve conter ao menos {{ limit }} characters',
+                        'minMessage' => 'Sua senha deve conter ao menos {{ limit }} caracteres',
                         'max' => 4096,
                     ]),
                 ],
