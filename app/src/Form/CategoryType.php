@@ -13,7 +13,7 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('category_name', TextType::class, [
-                'label' => 'Nome da categoria: ',
+                'label' => 'Nome da categoria',
                 'attr' => array('class' => 'mb-3 form-control')  
                 ])
             ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary form-control')));

@@ -6,6 +6,7 @@ use App\Repository\DirectorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DirectorRepository::class)]
 class Director
@@ -16,15 +17,33 @@ class Director
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 20,
+        minMessage: 'O Nome deve conter pelo {{ limit }} caracteres',
+        maxMessage: 'O Nome do Produto deve contar no máximo {{ limit }} caracteres',
+    )]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'O Sobrenome deve conter pelo {{ limit }} caracteres',
+        maxMessage: 'O Sobrenome deve contar no máximo {{ limit }} caracteres',
+    )]
     private ?string $last_name = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Positive(message: 'O valor deve ser positivo')]
     private ?int $age = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Positive(message: 'O valor deve ser positivo')]
     private ?int $oscars = null;
 
     #[ORM\OneToMany(mappedBy: 'director', targetEntity: Movie::class)]

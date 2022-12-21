@@ -22,10 +22,10 @@ class DirectorController extends AbstractController
     }
 
     #[Route('/', name: 'index')]
-    public function index(DirectorRepository $directorRepository)
+    public function index()
     {
         $data['title'] = 'Gerenciar Diretores';
-        $data['directors'] = $directorRepository->findAll();
+        $data['directors'] = $this->directorRepository->findAll();
 
         return $this->render('director/index.html.twig', $data);
     }

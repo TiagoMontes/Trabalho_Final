@@ -22,10 +22,10 @@ class MovieController extends AbstractController
     }
 
     #[Route('/', name: 'index')]
-    public function index(MovieRepository $movieRepository)
+    public function index()
     {
         $data['title'] = 'Gerenciar Filmes';
-        $data['movies'] = $movieRepository->findAll();
+        $data['movies'] = $this->movieRepository->findAll();
 
         return $this->render('movie/index.html.twig', $data);
     }
@@ -33,8 +33,8 @@ class MovieController extends AbstractController
     #[Route('/add', name: 'add')]
     public function newMovie(Request $request): Response
     {
-
         $movie = new Movie;
+        
         $form = $this->createForm(MovieType::class, $movie);
         $form->handleRequest($request);
         
