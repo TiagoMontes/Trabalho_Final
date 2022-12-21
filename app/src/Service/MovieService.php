@@ -13,6 +13,8 @@ class MovieService
 
     public function register($movie): Movie
     {
+
+        // $movie->setReleaseDate($dateForm);
         $this->movieRepository->save($movie, true);
 
         return $movie;

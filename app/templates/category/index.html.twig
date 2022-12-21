@@ -6,30 +6,28 @@
 
 {% block body %}
     <h1 class='mt-3'>{{ title }}</h1>
-    <a href="{{ path('category_new') }}" class='btn btn-primary mt-3'>Adicionar nova categoria</a>
-    <table class='table mt-3'>
-        <thead>
-            <tr>
-                <th scope="col">#</th></td>
-                <th scope="col">Descrição</th></td>
-                <th scope="col">Ações</th></td>
-            </tr>
-        </thead>
-        <tbody>
-                {% for category in categories %}
+    <a href="{{ path('category_new') }}" class='btn btn-primary mt-4 mb-2'>Adicionar nova categoria</a>
+    <div class="card-transparent mt-4">
+        <table class='table table-dark table-striped align-middle mt-3'>
+            <thead>
                 <tr>
-                    <td>{{ category.id }}</td>
-                    <td>{{ category.categoryName }}</td>
-                    <td>
-                    <a href='{{ path("category_update", {id: category.id}) }}' class='btn btn-primary'>Editar</a>
-                    <a href='{{ path("category_delete", {id: category.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
-                    </td>
+                    <th scope="col">#</th></td>
+                    <th scope="col">Descrição</th></td>
+                    <th scope="col">Ações</th></td>
                 </tr>
-                {% endfor %}
-        </tbody>
-    </table>
-    <div>
-        <a href='{{ path("movie_index") }}' class='btn btn-primary mt-3'>Filmes</a>
-        <a href='{{ path("director_index") }}' class='btn btn-primary mt-3'>Diretores</a>
+            </thead>
+            <tbody>
+                    {% for category in categories %}
+                    <tr>
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.categoryName }}</td>
+                        <td>
+                        <a href='{{ path("category_update", {id: category.id}) }}' class='btn btn-primary'>Editar</a>
+                        <a href='{{ path("category_delete", {id: category.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
