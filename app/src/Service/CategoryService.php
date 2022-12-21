@@ -12,11 +12,8 @@ class CategoryService
         
     }
 
-    public function register(array $form): Category
+    public function register($category): Category
     {
-        $category = new Category();
-        $category->setCategoryName($form['category_name']);
-
         $this->categoryRepository->save($category, true);
 
         return $category;
@@ -24,7 +21,6 @@ class CategoryService
 
     public function update($category): Category
     {
-        $category->setCategoryName($category->getCategoryName());
         $this->categoryRepository->save($category, true);
 
         return $category;

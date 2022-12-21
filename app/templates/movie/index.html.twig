@@ -5,5 +5,53 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ title }}</h1>
+    <h1 class='mt-3'>{{ title }}</h1>
+    <a href="{{ path('movie_add') }}" class='btn btn-primary mt-3'>Adicionar novo filme</a>
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Filme</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Duração</th>
+                {# <th scope="col">Lançamento</th> #}
+                <th scope="col">Diretor</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+            <tbody>
+            {% for movie in movies %}
+                <tr id='movie'>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.description }}</td>
+                    <td>{{ movie.category }}</td>
+                    <td id='duration'>{{ movie.duration }} min</td>
+                    {# <td>{{ movie.release_date }}</td> #}
+                    <td>{{ movie.director }}</td>
+                    <td>
+                        <a href='{{ path("movie_update", {id: movie.id}) }}' class='btn btn-primary' name='id'>Editar</a>
+                        <a href='{{ path("movie_delete", {id: movie.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <a href='{{ path("category_index") }}' class='btn btn-primary mt-3'>Categorias</a>
+        <a href='{{ path("director_index") }}' class='btn btn-primary mt-3'>Diretores</a>
+    </div>
+
+    <script>
+        const durations = document.querySelectorAll("#duration")
+
+        durations.forEach(duration => {
+            const durationFormat = duration.innerText.replace(' min', '')
+
+            if (durationFormat < 100) {
+                duration.parentNode.classList.add("border", "border-danger", "mt-2")
+            } else {
+                duration.parentNode.classList.add("border", "border-warning", "mt-2")
+            }
+        })
+    </script>  
 {% endblock %}

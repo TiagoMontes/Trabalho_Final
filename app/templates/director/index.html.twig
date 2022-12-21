@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    <h1 class='mt-3'>{{ title }}</h1>
+    <a href="{{ path('director_add') }}" class='btn btn-primary mt-3'>Adicionar novo diretor</a>
+    <table class='table mt-3'>
+        <thead>
+            <tr>
+            <th scope="col">#</td>
+            <th scope="col">Nome</th></td>
+            <th scope="col">Sobrenome</th></td>
+            <th scope="col">Idade</th></td>
+            <th scope="col">Oscars</th></td>
+            <th scope="col">Ações</th></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for director in directors %}
+                <tr>
+                <td>{{ director.id }}</td>
+                <td>{{ director.firstName }}</td>
+                <td>{{ director.lastName }}</td>
+                <td>{{ director.age }}</td>
+                <td>{{ director.oscars }}</td>
+                <td>
+                <a href='{{ path("director_update", {id: director.id}) }}' class='btn btn-primary'>Editar</a>
+                <a href='{{ path("director_delete", {id: director.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <a href='{{ path("movie_index") }}' class='btn btn-primary mt-3'>Filmes</a>
+        <a href='{{ path("category_index") }}' class='btn btn-primary mt-3'>Categorias</a>
+    </div>
+{% endblock %}

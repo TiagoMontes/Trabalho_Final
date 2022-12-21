@@ -3,9 +3,10 @@
 namespace App\Form\Type;
 
 use App\Entity\Category;
-use Doctrine\DBAL\Types\FloatType;
+use App\Entity\Director;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,15 +18,41 @@ class MovieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, ['label' => 'Nome do Filme: '])
-            ->add('description', TextType::class, ['label' => 'Descrição: '])
-            ->add('duration', NumberType::class, ['label' => 'Duração: '])
-            ->add('release_date', DateType::class, ['label' => 'Data de lançamento: '])
+            ->add('title', TextType::class, [
+                'label' => 'Nome do Filme', 
+                'attr' => ['class' => 'form-control mb-3']
+            ])
+            ->add('description', TextType::class, [
+                'label' => 'Descrição', 
+                'attr' => ['class' => 'form-control mb-3']
+            ])
+            ->add('duration', NumberType::class, [
+                'label' => 'Duração',
+                'attr' => [
+                    'class' => 'form-control mb-3', 
+                    'placeholder' => 'min'
+                ]
+            ])
+            ->add('release_date', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => false,
+                'label' => 'Data de Lançamento', 
+                'attr' => array('class' => 'form-control mb-2'),
+                'placeholder' => 'dia/mes/ano',
+                'format' => 'dd/MM/yyyy',
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'categoryName',
-                'label' => 'Gênero'
+                'label' => 'Gênero',
+                'attr' => array('class' => 'form-control mb-3')
             ])
-            ->add('Salvar', SubmitType::class);
+            ->add('director', EntityType::class, [
+                'class' => Director::class,
+                'choice_label' => 'first_name',
+                'label' => 'Diretor',
+                'attr' => array('class' => 'form-control mb-3')
+            ])
+            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary w-100')));
     }
 }
