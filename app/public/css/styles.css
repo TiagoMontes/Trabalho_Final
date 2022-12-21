@@ -26,3 +26,7 @@ body{
     background-color: #212529;
     color: rgb(255, 255, 255);
 }
+
+.checkbox {
+    margin-left: 10px;
+}
