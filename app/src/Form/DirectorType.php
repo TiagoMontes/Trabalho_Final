@@ -29,6 +29,6 @@ class DirectorType extends AbstractType
                 'label' => 'Oscars',
                 'attr' => ['class' => 'mb-3 form-control text-center'],
             ])
-            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary form-control')));
+            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary mt-4 w-100')));
     }   
 }

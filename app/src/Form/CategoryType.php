@@ -16,6 +16,6 @@ class CategoryType extends AbstractType
                 'label' => 'Nome da categoria',
                 'attr' => array('class' => 'mb-3 form-control')  
                 ])
-            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary form-control')));
+            ->add('Salvar', SubmitType::class, array('attr' => array('class' => 'btn btn-primary mt-4 w-100')));
     }
 }

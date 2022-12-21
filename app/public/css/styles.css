@@ -30,3 +30,7 @@ body{
 .checkbox {
     margin-left: 10px;
 }
+
+.disabled{
+    pointer-events: none;
+}

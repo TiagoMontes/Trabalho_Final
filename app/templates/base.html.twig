@@ -24,13 +24,16 @@
                         <li class='nav-item'>
                             <a class='nav-link' href="{{ path('director_index') }}">Diretores</a>
                         </li>
-
+                        <li class='nav-item'>
+                            <a class='nav-link text-light disabled' href="{{ path('movie_index') }}">{{ app.user.name }}</a>
+                        </li>
+                        <li>
+                            <a class='nav-link text-danger font-weight-bold' href="{{ path('app_logout') }}">Sair</a>
+                        </li>
                     </ul>
                 </div>
 
-                <span class='text-secondary'>{{ app.user.name }}</span>
 
-                <a class='nav-link text-danger font-weight-bold' href="{{ path('app_logout') }}">Sair</a>
                 {% endif %}
             </div>
         </nav>
