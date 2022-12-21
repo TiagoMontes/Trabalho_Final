@@ -13,9 +13,10 @@ class MovieService
 
     public function register($movie): Movie
     {
-
-        // $movie->setReleaseDate($dateForm);
-        $this->movieRepository->save($movie, true);
+        $movieExist = $this->movieRepository->findBy(["title" => $movie->getTitle()]);
+        if ($movieExist == null) { //
+            $this->movieRepository->save($movie, true);
+        }
 
         return $movie;
     }

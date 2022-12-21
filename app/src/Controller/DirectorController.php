@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Director;
 use App\Form\Type\DirectorType;
 use App\Repository\DirectorRepository;
 use App\Service\DirectorService;
@@ -30,11 +31,12 @@ class DirectorController extends AbstractController
     #[Route('/add', name: 'add')]
     public function addDirector(Request $request): Response
     {
-        $form = $this->createForm(DirectorType::class);
+        $director = new Director();
+        $form = $this->createForm(DirectorType::class, $director);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->directorService->register($form->getData());
+            $this->directorService->register($director);
             return $this->redirectToRoute('director_index');
         }
 
