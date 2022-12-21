@@ -10,10 +10,10 @@
     <body>
         <nav class='navbar navbar-expand navbar-dark bg-dark'>
             <div class='container'>
-                <a class='navbar-brand' href='https://github.com/TiagoMontes/Trabalho_Final' target='_blank'>Projeto Estágio</a>
+                <div class='collapse navbar-collapse d-flex justify-content-between'>
+                    {% if is_granted('ROLE_USER') %}
+                    <a class='navbar-brand' href='https://github.com/TiagoMontes/Trabalho_Final' target='_blank'>Projeto Estágio</a>
 
-                {% if is_granted('ROLE_USER') %}
-                <div class='collapse navbar-collapse justify-content-end'>
                     <ul class='navbar-nav'>
                         <li class='nav-item'>
                             <a class='nav-link' href="{{ path('movie_index') }}">Filmes</a>
@@ -24,17 +24,18 @@
                         <li class='nav-item'>
                             <a class='nav-link' href="{{ path('director_index') }}">Diretores</a>
                         </li>
+                    </ul>
+
+                    <ul class='navbar-nav'>
                         <li class='nav-item'>
-                            <a class='nav-link text-light disabled' href="{{ path('movie_index') }}">{{ app.user.name }}</a>
+                            <a class='nav-link text-light disabled' href="{{ path('movie_index') }}">Olá {{ app.user.name }}</a>
                         </li>
                         <li>
                             <a class='nav-link text-danger font-weight-bold' href="{{ path('app_logout') }}">Sair</a>
                         </li>
                     </ul>
+                    {% endif %}
                 </div>
-
-
-                {% endif %}
             </div>
         </nav>
 
