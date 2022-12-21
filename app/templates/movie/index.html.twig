@@ -6,36 +6,40 @@
 
 {% block body %}
     <h1 class='mt-3'>{{ title }}</h1>
-    <a href="{{ path('movie_add') }}" class='btn btn-primary mt-3'>Adicionar novo filme</a>
-    <table class="table mt-3">
-        <thead>
-            <tr>
-                <th scope="col">Filme</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Categoria</th>
-                <th scope="col">Duração</th>
-                <th scope="col">Lançamento</th>
-                <th scope="col">Diretor</th>
-                <th scope="col">Ações</th>
-            </tr>
-        </thead>
-            <tbody>
-            {% for movie in movies %}
-                <tr id='movie'>
-                    <td>{{ movie.title }}</td>
-                    <td>{{ movie.description }}</td>
-                    <td>{{ movie.category }}</td>
-                    <td id='duration'>{{ movie.duration }} min</td>
-                    <td>{{ movie.releaseDate }}</td>
-                    <td>{{ movie.director }}</td>
-                    <td>
-                        <a href='{{ path("movie_update", {id: movie.id}) }}' class='btn btn-primary' name='id'>Editar</a>
-                        <a href='{{ path("movie_delete", {id: movie.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
-                    </td>
+    <a href="{{ path('movie_add') }}" class='btn btn-primary mt-4 mb-2'>Adicionar novo filme</a>
+    <div class="card-transparent mt-4">
+    <table class="table table-dark table-striped align-middle mt-3">
+
+
+            <thead>
+                <tr>
+                    <th scope="col">Filme</th>
+                    <th scope="g-col-2">Descrição</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Duração</th>
+                    <th scope="col">Lançamento</th>
+                    <th scope="col">Diretor</th>
+                    <th scope="col">Ações</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+                <tbody>
+                {% for movie in movies %}
+                    <tr id='movie'>
+                        <td>{{ movie.title }}</td>
+                        <td>{{ movie.description }}</td>
+                        <td>{{ movie.category }}</td>
+                        <td id='duration'>{{ movie.duration }} min</td>
+                        <td>{{ movie.releaseDate }}</td>
+                        <td>{{ movie.director.firstName }} {{movie.director.lastName}}</td>
+                        <td>
+                            <a href='{{ path("movie_update", {id: movie.id}) }}' class='btn btn-primary' name='id'>Editar</a>
+                            <a href='{{ path("movie_delete", {id: movie.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 {% endblock %}
 {% block javascripts %}
