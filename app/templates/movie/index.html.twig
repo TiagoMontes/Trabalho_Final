@@ -14,7 +14,7 @@
                 <th scope="col">Descrição</th>
                 <th scope="col">Categoria</th>
                 <th scope="col">Duração</th>
-                {# <th scope="col">Lançamento</th> #}
+                <th scope="col">Lançamento</th>
                 <th scope="col">Diretor</th>
                 <th scope="col">Ações</th>
             </tr>
@@ -26,7 +26,7 @@
                     <td>{{ movie.description }}</td>
                     <td>{{ movie.category }}</td>
                     <td id='duration'>{{ movie.duration }} min</td>
-                    {# <td>{{ movie.release_date }}</td> #}
+                    <td>{{ movie.releaseDate }}</td>
                     <td>{{ movie.director }}</td>
                     <td>
                         <a href='{{ path("movie_update", {id: movie.id}) }}' class='btn btn-primary' name='id'>Editar</a>
@@ -37,7 +37,10 @@
         </tbody>
     </table>
 
+{% endblock %}
+{% block javascripts %}
     <script>
+
         const durations = document.querySelectorAll("#duration")
 
         durations.forEach(duration => {
@@ -50,4 +53,5 @@
             }
         })
     </script>  
+
 {% endblock %}

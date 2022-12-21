@@ -34,9 +34,13 @@ class MovieController extends AbstractController
 
         $movie = new Movie;
         $form = $this->createForm(MovieType::class, $movie);
+        $requestData =$request->request->all();
+        
+        
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            // $dateForm = DateTime::createFromFormat('d/m/Y', $requestData['movie']['release_date']);
             $this->movieService->register($movie);
             return $this->redirectToRoute('movie_index');
         }
