@@ -34,3 +34,14 @@ body{
 .disabled{
     pointer-events: none;
 }
+
+.description{
+    max-width: 15ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.description:hover{
+    overflow: visible;
+}
