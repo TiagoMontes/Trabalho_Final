@@ -6,6 +6,7 @@ use App\Form\Type\MovieType;
 use App\Repository\MovieRepository;
 use App\Service\MovieService;
 use App\Entity\Movie;
+use App\Repository\DirectorRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -77,6 +78,16 @@ class MovieController extends AbstractController
         return $this->render('movie/form.html.twig', [
             'movie_form' => $form,
             'title' => 'Editar Filme'
+        ]);
+    }
+
+    #[Route('/description/{id}', name: 'description')]
+    public function movieDescription(int $id): Response
+    {
+        $movie = $this->movieRepository->find($id);
+
+        return $this->render('movie/description.html.twig', [
+            'movie' => $movie,
         ]);
     }
 }

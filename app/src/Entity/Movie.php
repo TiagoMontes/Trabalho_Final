@@ -33,7 +33,7 @@ class Movie
     #[Assert\NotBlank]
     #[Assert\Length(
         min: 10,
-        max: 100,
+        max: 255,
         minMessage: 'A Descrição deve conter pelo menos {{ limit }} caracteres',
         maxMessage: 'A Descrição deve conter no máximo {{ limit }} caracteres',
     )]

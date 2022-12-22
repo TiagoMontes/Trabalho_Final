@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Descrição {{ movie.title }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ movie.title }}</h1>
+
+    <img src='https://picsum.photos/400/450' class="rounded img-thumbnail img-fluid mt-2">
+
+    <p class='mt-4'>
+        {{ movie.description }} tem a duração de {{ movie.duration }}min 
+        e foi dirigido por {{ movie.director }}.
+        O filme tem nota {{ movie.review.rating }}
+    </p>
+{% endblock %}
