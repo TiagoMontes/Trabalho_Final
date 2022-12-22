@@ -33,7 +33,7 @@ class Movie
     #[Assert\NotBlank]
     #[Assert\Length(
         min: 10,
-        max: 100,
+        max: 255,
         minMessage: 'A Descrição deve conter pelo menos {{ limit }} caracteres',
         maxMessage: 'A Descrição deve conter no máximo {{ limit }} caracteres',
     )]
@@ -51,8 +51,9 @@ class Movie
     #[Assert\NotBlank]
     private ?string $releaseDate = null;
 
-    #[ORM\ManyToOne(inversedBy: 'movies')]
-    private ?Review $review = null;
+    #[ORM\Column]
+    #[Assert\NotBlank]
+    private ?int $reviewRating = null;
 
     public function getId(): ?int
     {
@@ -131,16 +132,15 @@ class Movie
         return $this;
     }
 
-    public function getReview(): ?Review
+    public function getReviewRating(): ?int
     {
-        return $this->review;
+        return $this->reviewRating;
     }
 
-    public function setReview(?Review $review): self
+    public function setReviewRating(int $reviewRating): self
     {
-        $this->review = $review;
+        $this->reviewRating = $reviewRating;
 
         return $this;
     }
-
 }

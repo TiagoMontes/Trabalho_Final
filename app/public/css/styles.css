@@ -10,6 +10,16 @@ body{
     height: 100vh;
 }
 
+a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+span{
+    font-weight: bold;
+    font-size: 18px;
+}
+
 .card-transparent{
     padding: 10px 30px;
     border-radius: 10px;
@@ -36,15 +46,24 @@ body{
 }
 
 .description{
-    max-width: 20ch;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    width: 400px;
 }
 
-.description:hover{
-        max-width: none;
-        overflow: visible;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+.card_description{
+    display: flex;
+    flex-direction: column;
+
+
+    width: 450px;
+    height: 40%;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid black;
+    background-color: #212529;
+    color: #eeeeee;
 }
