@@ -51,6 +51,9 @@ class Movie
     #[Assert\NotBlank]
     private ?string $releaseDate = null;
 
+    #[ORM\ManyToOne(inversedBy: 'movies')]
+    private ?Review $review = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,6 +127,18 @@ class Movie
     public function setReleaseDate(string $releaseDate): self
     {
         $this->releaseDate = $releaseDate;
+
+        return $this;
+    }
+
+    public function getReview(): ?Review
+    {
+        return $this->review;
+    }
+
+    public function setReview(?Review $review): self
+    {
+        $this->review = $review;
 
         return $this;
     }

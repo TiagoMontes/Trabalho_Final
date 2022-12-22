@@ -28,10 +28,10 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Adicione um Nome',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 2,
                         'minMessage' => 'Sua nome deve conter ao menos {{ limit }} caracteres',
-                        'max' => 4096,
-                    ]),
+                        'max' => 50,
+                    ])
                 ],
             ])
             ->add('email', EmailType::class, [
@@ -44,7 +44,7 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Seu email deve conter ao menos {{ limit }} caracteres',
-                        'max' => 4096,
+                        'max' => 100,
                     ]),
                 ],
             ])
