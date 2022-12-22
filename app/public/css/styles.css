@@ -36,12 +36,15 @@ body{
 }
 
 .description{
-    max-width: 15ch;
+    max-width: 20ch;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .description:hover{
-    overflow: visible;
+        max-width: none;
+        overflow: visible;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 }
