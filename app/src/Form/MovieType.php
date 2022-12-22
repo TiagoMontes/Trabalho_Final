@@ -4,6 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\Entity\Director;
+use App\Entity\Review;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -39,6 +40,12 @@ class MovieType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'categoryName',
                 'label' => 'Gênero',
+                'attr' => array('class' => 'form-control mb-3')
+            ])
+            ->add('review', EntityType::class, [
+                'class' => Review::class,
+                'choice_label' => 'rating',
+                'label' => 'Nota',
                 'attr' => array('class' => 'form-control mb-3')
             ])
             ->add('director', EntityType::class, [

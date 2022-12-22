@@ -19,6 +19,7 @@
                     <th scope="col">Duração</th>
                     <th scope="col">Lançamento</th>
                     <th scope="col">Diretor</th>
+                    <th scope="col">Nota</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -28,9 +29,10 @@
                         <td>{{ movie.title }}</td>
                         <td>{{ movie.description }}</td>
                         <td>{{ movie.category }}</td>
-                        <td id='duration'>{{ movie.duration }} min</td>
+                        <td>{{ movie.duration }} min</td>
                         <td>{{ movie.releaseDate }}</td>
                         <td>{{ movie.director.firstName }} {{movie.director.lastName}}</td>
+                        <td id='rating'>{{ movie.review.rating}}</td>
                         <td>
                             <a href='{{ path("movie_update", {id: movie.id}) }}' class='btn btn-primary' name='id'>Editar</a>
                             <a href='{{ path("movie_delete", {id: movie.id}) }}' class='btn btn-danger' name='id'>Excluir</a>
@@ -45,15 +47,18 @@
 {% block javascripts %}
     <script>
 
-        const durations = document.querySelectorAll("#duration")
+        const ratings = document.querySelectorAll("#rating")
 
-        durations.forEach(duration => {
-            const durationFormat = duration.innerText.replace(' min', '')
+        ratings.forEach(rating => {
+            let ratingNumber = Number(rating.innerHTML);
 
-            if (durationFormat < 100) {
-                duration.parentNode.classList.add("border", "border-danger", "mt-2")
+            console.log(ratingNumber);
+            if (ratingNumber === 5) {
+                rating.parentNode.classList.add("border", "border-success", "mt-2")
+            } else if(ratingNumber > 2 && ratingNumber <= 4){
+                rating.parentNode.classList.add("border", "border-warning", "mt-2")
             } else {
-                duration.parentNode.classList.add("border", "border-warning", "mt-2")
+                rating.parentNode.classList.add("border", "border-danger", "mt-2")
             }
         })
     </script>  
