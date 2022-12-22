@@ -13,9 +13,14 @@
             <img src='https://picsum.photos/300/350' class="rounded img-thumbnail img-fluid mt-2">
 
             <p class='mt-4'>
-                {{ movie.description }} tem a duração de {{ movie.duration }}min 
-                e foi dirigido por {{ movie.director }}.
-                O filme tem nota {{ movie.review.rating }}
+                {{ movie.title }} é um filme {{ movie.description }} tem a duração de {{ movie.duration }}min 
+                e foi dirigido por {{ movie.director.firstName }} {{movie.director.lastName}}.
+            </p>
+            <p>
+                O filme tem nota 
+                {% for i in 1.. movie.review.rating %}
+                    ⭐
+                {% endfor %}
             </p>
         <div>
     </div>
