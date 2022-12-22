@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class='row'>
-        <div class='col-4 offset-4'>
+        <div class='col-4 container text-center w-50 p-3 rounded-3 mt-5 card-form '>
             <h1>Login</h1>
             {% if error %}
                 <span>{{ error.messageKey | trans(error.messageData, 'security') }}</span>
@@ -13,14 +13,14 @@
             <form action="{{ path('login') }}" method='post'>
                 <input type='hidden' name='_target_path' value='/movie' />
                 
-                <label for='username' class='form-label'>Email</label>
+                <label for='username' class='form-label mt-4'>Email</label>
                 <input type='text' class='form-control' id='username' name='_username' value='{{ lastUserName }}' />
                 
-                <label for='password' class='form-label'>Senha</label>
+                <label for='password' class='form-label mt-3'>Senha</label>
                 <input type='password' class='form-control' id='password' name='_password' />
 
-                <button type='submit' class='btn btn-primary mt-3'>Login</button>
-                <a href="{{ path('register') }}" class='btn btn-primary mt-3'>Criar Cadastro</a>
+                <button type='submit' class='btn btn-primary mt-4 w-100'>Login</button>
+                <a href="{{ path('register') }}" class='btn btn-primary mt-2 w-100'>Criar Cadastro</a>
             </form>
         </div>
     </div>

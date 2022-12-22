@@ -11,14 +11,10 @@
             {{ form_row(registrationForm.plainPassword, {
                 label: 'Password'
             }) }}
-            <div class='mx-auto'>
-                {{ form_row(registrationForm.agreeTerms) }}
-            </div>
-            <div class='align-middle'>
-                <a href="{{ path('register_terms') }}" target='_blank'>Termos</a>
+            {{ form_row(registrationForm.agreeTerms) }}
+            <a href="{{ path('register_terms') }}" class='btn btn-light' target=' _blank'>Termos</a>
 
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-            </div>
         {{ form_end(registrationForm) }}
+        <a href='{{ path("login") }}' class='btn btn-primary mt-2 w-100'>Cancelar</a>
     <div>
 {% endblock %}
