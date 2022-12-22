@@ -5,13 +5,18 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ movie.title }}</h1>
+<div class="d-flex justify-content-center">
 
-    <img src='https://picsum.photos/400/450' class="rounded img-thumbnail img-fluid mt-2">
+        <div class="card_description">
+            <h1>{{ movie.title }}</h1>
 
-    <p class='mt-4'>
-        {{ movie.description }} tem a duração de {{ movie.duration }}min 
-        e foi dirigido por {{ movie.director }}.
-        O filme tem nota {{ movie.review.rating }}
-    </p>
+            <img src='https://picsum.photos/300/350' class="rounded img-thumbnail img-fluid mt-2">
+
+            <p class='mt-4'>
+                {{ movie.description }} tem a duração de {{ movie.duration }}min 
+                e foi dirigido por {{ movie.director }}.
+                O filme tem nota {{ movie.review.rating }}
+            </p>
+        <div>
+    </div>
 {% endblock %}
